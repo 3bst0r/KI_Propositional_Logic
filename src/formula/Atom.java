@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by Johannes on 24.10.2015.
  */
-public class Atom extends Sentence {
+public class Atom extends Formula {
 
     private boolean v;
     private char name;
@@ -37,7 +37,7 @@ public class Atom extends Sentence {
     }
 
     @Override
-    public List<Sentence> gatherLiterals(List<Sentence> list) {
+    public List<Formula> gatherLiterals(List<Formula> list) {
         list.add(this);
         return list;
     }
@@ -52,7 +52,7 @@ public class Atom extends Sentence {
     }
 
     @Override
-    public Sentence removeLiteral(Sentence literal) {
+    public Formula removeLiteral(Formula literal) {
         if (literal.equals(this)) return null;
         else return this;
     }

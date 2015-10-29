@@ -6,9 +6,9 @@ import java.util.Map;
 /**
  * Created by Johannes on 24.10.2015.
  */
-public class Not extends Sentence {
+public class Not extends Formula {
 
-    private Sentence formula;
+    private Formula formula;
 
     @Override
     public boolean v() {
@@ -27,13 +27,13 @@ public class Not extends Sentence {
     }
 
     @Override
-    public List<Sentence> gatherLiterals(List<Sentence> list) {
+    public List<Formula> gatherLiterals(List<Formula> list) {
         if (formula instanceof Atom) list.add(this);
         else formula.gatherLiterals(list);
         return list;
     }
 
-    public Not(Sentence formula) {
+    public Not(Formula formula) {
         this.formula = formula;
     }
 
@@ -46,7 +46,7 @@ public class Not extends Sentence {
      * not implemented!
      */
     @Override
-    public Sentence removeLiteral(Sentence literal) {
+    public Formula removeLiteral(Formula literal) {
         if (literal.equals(this))
             return null;
         else return this;
@@ -57,7 +57,7 @@ public class Not extends Sentence {
         return (obj instanceof Not && (((Not) obj).formula.equals(formula)));
     }
 
-    public Sentence getFormula() {
+    public Formula getFormula() {
         return formula;
     }
 }

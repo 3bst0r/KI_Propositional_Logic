@@ -6,10 +6,10 @@ import java.util.Map;
 /**
  * Created by Johannes on 24.10.2015.
  */
-public class Iff extends Sentence {
+public class Iff extends Formula {
 
-    private Sentence left;
-    private Sentence right;
+    private Formula left;
+    private Formula right;
 
     @Override
     public boolean v() {
@@ -30,7 +30,7 @@ public class Iff extends Sentence {
     }
 
     @Override
-    public List<Sentence> gatherLiterals(List<Sentence> list) {
+    public List<Formula> gatherLiterals(List<Formula> list) {
         left.gatherLiterals(list);
         right.gatherLiterals(list);
         return list;
@@ -40,11 +40,11 @@ public class Iff extends Sentence {
      * not implemented!
      */
     @Override
-    public Sentence removeLiteral(Sentence literal) {
+    public Formula removeLiteral(Formula literal) {
         return null;
     }
 
-    public Iff(Sentence left, Sentence right) {
+    public Iff(Formula left, Formula right) {
         this.left = left;
         this.right = right;
     }

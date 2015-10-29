@@ -6,10 +6,10 @@ import java.util.Map;
 /**
  * Created by Johannes on 24.10.2015.
  */
-public class Implication extends Sentence {
+public class Implication extends Formula {
 
-    private Sentence left;
-    private Sentence right;
+    private Formula left;
+    private Formula right;
 
     @Override
     public boolean v() {
@@ -35,7 +35,7 @@ public class Implication extends Sentence {
     }
 
     @Override
-    public List<Sentence> gatherLiterals(List<Sentence> list) {
+    public List<Formula> gatherLiterals(List<Formula> list) {
         left.gatherLiterals(list);
         right.gatherLiterals(list);
         return list;
@@ -45,11 +45,11 @@ public class Implication extends Sentence {
      * not implemented!
      */
     @Override
-    public Sentence removeLiteral(Sentence literal) {
+    public Formula removeLiteral(Formula literal) {
         return null;
     }
 
-    public Implication(Sentence left, Sentence right) {
+    public Implication(Formula left, Formula right) {
         this.left = left;
         this.right = right;
     }

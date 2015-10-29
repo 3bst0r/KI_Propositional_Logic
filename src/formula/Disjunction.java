@@ -6,17 +6,17 @@ import java.util.Map;
 /**
  * Created by Johannes on 24.10.2015.
  */
-public class Disjunction extends Sentence {
+public class Disjunction extends Formula {
 
-    private Sentence left;
-    private Sentence right;
+    private Formula left;
+    private Formula right;
 
     @Override
     public boolean v() {
         return left.v() || right.v();
     }
 
-    public Disjunction(Sentence left, Sentence right) {
+    public Disjunction(Formula left, Formula right) {
         this.left = left;
         this.right = right;
     }
@@ -35,7 +35,7 @@ public class Disjunction extends Sentence {
     }
 
     @Override
-    public List<Sentence> gatherLiterals(List<Sentence> list) {
+    public List<Formula> gatherLiterals(List<Formula> list) {
         left.gatherLiterals(list);
         right.gatherLiterals(list);
         return list;
@@ -43,9 +43,9 @@ public class Disjunction extends Sentence {
 
 
     @Override
-    public Sentence removeLiteral(Sentence literal) {
-        Sentence l = left.removeLiteral(literal);
-        Sentence r = right.removeLiteral(literal);
+    public Formula removeLiteral(Formula literal) {
+        Formula l = left.removeLiteral(literal);
+        Formula r = right.removeLiteral(literal);
         if (l == null) return r;
         else if (r == null) return l;
         else return this;

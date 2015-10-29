@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Created by Johannes on 24.10.2015.
  */
-public abstract class Sentence {
+public abstract class Formula {
 
     public abstract boolean v();
 
@@ -13,7 +13,7 @@ public abstract class Sentence {
 
     public abstract List<Atom> gatherAtoms(List<Atom> list);
 
-    public abstract List<Sentence> gatherLiterals(List<Sentence> list);
+    public abstract List<Formula> gatherLiterals(List<Formula> list);
 
 
     /**
@@ -21,7 +21,7 @@ public abstract class Sentence {
      * @param literal to be removed
      * @return the new disjunctive clause, null if empty
      */
-    public abstract Sentence removeLiteral(Sentence literal);
+    public abstract Formula removeLiteral(Formula literal);
 
     public boolean isTautology(List<Atom> atoms) {
         for (Atom p : atoms) p.setV(false);
