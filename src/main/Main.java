@@ -110,45 +110,11 @@ public class Main {
 }
 
     public static void main(String[] args) {
-        Atom p = new Atom('p');
-        Atom q = new Atom('q');
-        List<Atom> list = new ArrayList<Atom>();
-        list.add(p);
-        list.add(q);
 
-        Formula formula = new Iff(new Implication(new Not(p), q), new Disjunction(p, q));
-        System.out.println("A = " + formula);
-
-        p.setV(true);
-        q.setV(true);
-        System.out.println("v(p) = true and v(q) = true -> v(A) = " + formula.v());
-        p.setV(false);
-        q.setV(false);
-        System.out.println("v(p) = false and v(q) = false -> v(A) = " + formula.v());
-
-        System.out.println(formula.toString() + " is a tautology: " + formula.isTautology(list));
-        System.out.println(formula.toString() + " is a tautology: " + formula.isTautology());
-
-        /* resolution */
-        Formula clause1 = new Disjunction((new Disjunction(p, new Not(q))),new Not(q));
-        Formula clause2 = new Disjunction(p, q);
-
-        System.out.println(clause1.toString() + " becomes " + clause1.removeLiteral(new Not(q)).toString());
-        clause1 = removeDuplicates(clause1);
-        System.out.println("removed duplicates. " + clause1.toString());
-
-        Set<Set<Formula>> input = new HashSet<Set<Formula>>();
-        Set<Formula> f1 = new HashSet<Formula>();
-        f1.add(new Not(p));
-        Set<Formula> f2 = new HashSet<Formula>();
-        f2.add(q);
-        Set<Formula> f3 = new HashSet<Formula>();
-        f3.add(new Not(q));
-        f3.add(p);
-        input.add(f1);
-        input.add(f2);
-        input.add(f3);
-        System.out.println("satisfiable: " + satisfiable(input));
+        Predicate P = new Predicate("P",new String[]{"x","y"});
+        Formula f = new Exists("x",P);
+        f = new ForAll("y", f);
+        System.out.println(f);
 
     }
 }
